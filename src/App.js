@@ -73,6 +73,17 @@ function App() {
 		setTodo(() => filterTodo(false, todo));
 	};
 
+	useEffect(() => {
+		const todos = JSON.parse(localStorage.getItem('items'));
+		if (todos) {
+			setTodo(todos);
+		}
+	}, []);
+
+	useEffect(() => {
+		localStorage.setItem('items', JSON.stringify(todo));
+	}, [todo]);
+
 	return (
 		<div className='App'>
 			<Header
